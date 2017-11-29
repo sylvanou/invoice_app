@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- 1. Changed font -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <style>
+        body{
+            /* 2. Added background color to body */
+            background-color: #F5F5DC;
+            margin: 10% 4% 4% 4%;
+        }
+        .userContainer{
+            display: flex;
+            height: 25em;
+            align-items: center;
+            justify-content: center;
+        }          
+        .invoiceContainer{
+            /* 3. Added border*/
+            border: 1px solid black; 
+            /* 4. Changed background Color on invoiceContainer */
+            background-color: #8d9db6;
+            /* 5. Added margin to invoiceContainer */
+            margin: 6px; 
+            margin-top: 4em;
+            display: flex;
+            flex-wrap: wrap;
+            width:100%;
+            height: auto;
+        }
+        .userProfile{
+            background-color: #8d9db6;
+            border: 1px solid black;
+            display: flex;
+            width: 60%;
+            height: 100%;
+        }
+        .user{
+            height: auto;
+        }
+        #picContainer{
+            /* 6. Added border to picContainer */
+            border: 1px solid black;
+            width: 40%;
+            margin: 8% 0% 8% 3%;
+            background-color: #4D6076;
+        }
+        #infoContainer{
+            /* 7. Changed margin for infoContainer */
+            margin: 3% 2% 2% 2%;
+            width: 60%;
+            /* 8. Font Family for infoContainer*/
+            font-family: 'Roboto', sans-serif;
+        }
+        p{
+            font-size: 22px;
+        }
+        img{
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .invoice{ 
+            /* 9. font family to invoice */
+            font-family: 'Roboto', sans-serif;
+            /* 10. Added background color*/
+            background-color: 	#F5F5DC;
+            border: 1px solid black;
+            margin: 6% 3% 0% 3%;
+            padding: 2%;
+            width: 250px;
+            height: auto;
+            
+        }
+        .invoice > p{
+            /* 11. Added font-weight bold to invoice p */
+            font-weight: bold;
+            position: relative;
+            margin: 5px;
+            left: 25%;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>     
+    <div class="userContainer">
+        <!-- User Profile -->
+        <div class="userProfile">
+            <!-- Inside of my UserProfile I need a picture container-->
+            <div class="user" id="picContainer">
+            <!-- place image here -->
+            <img src="http://cdn.ebaumsworld.com/mediaFiles/picture/718392/85101701.jpeg" alt="A picture of money">
+            </div>
+            <!-- and an info container -->
+            <div class="user" id="infoContainer">
+                <u>Name:</u>
+                <p class="name"></p>
+                <u>Company Name:</u>
+                <p class="company_name"></p>
+                <u>Address:</u>
+                <p class="address"></p>
+                <u>Email:</u>
+                <p class="email"></p>
+            </div>
+        </div> 
+    </div>
+    
+    <div class="invoiceContainer">
+        <p class="title" ><b>Invoices</b></p>
+    </div>
+
+    <script>
+        //Fake it til you make it Database
+        var user = {
+            name: "Big Baller",
+            companyName: "Money Long Inc.",
+            address: "1234 sw 56 Ave Miami, Fl. 33198",
+            email: "bigballer@moneylong.com",
+            picture: "" 
+        }
+
+        var invoices = [
+            {
+                inv_id: "0156321",
+                companyName: user.companyName,
+                date: "9/7/2017",
+                order: "Dell Computers",
+                amount: 3,
+                cost: 3457.67,
+                paid: 3457.67
+            },
+            {
+                inv_id: "0145632",
+                companyName: user.companyName,
+                date: "1/5/2017",
+                order: "HP Printers",
+                amount: 2,
+                cost: 248.00,
+                paid: 150.00
+            },
+            {
+                inv_id: "0132110",
+                companyName: user.companyName,
+                date: "6/14/2016",
+                order: "Marketing Coffee Mugs",
+                amount: 160,
+                cost: 414.00,
+                paid: 414.00
+            },        
+            {
+                inv_id: "0124539",
+                companyName: user.companyName,
+                date: "8/27/2016",
+                order: "Microsoft",
+                amount: 10,
+                cost: 9457.67,
+                paid: 2257.68
+            },
+            {
+                inv_id: "0123456",
+                companyName: user.companyName,
+                date: "1/25/2015",
+                order: "Apple",
+                amount: 5,
+                cost: 1248.00,
+                paid: 150.00
+            },
+            {
+                inv_id: "0198765",
+                companyName: user.companyName,
+                date: "8/24/2017",
+                order: "Microstar International",
+                amount: 1600,
+                cost: 2400.00,
+                paid: 2400.00
+            }
+        
+        ]
+
+        
+        //element selectors
+        document.querySelector('.name').textContent = user.name
+        document.querySelector('.company_name').textContent = user.companyName
+        document.querySelector('.address').textContent = user.address
+        document.querySelector('.email').textContent = user.email
+        
+        // adding invoices
+        for(var i=0; i<invoices.length; i++){
+            document.querySelector('.invoiceContainer').innerHTML += `
+            <div class="invoice" id=${invoices[i].inv_id}>
+                Invoice #:   <br/>    
+                <p>${invoices[i].inv_id} </p>
+                Company Name:   <br /> 
+                <p>${invoices[i].companyName} </p>
+                Date:  <br />
+                <p> ${invoices[i].date} </p>
+                Order:  <br />   
+                <p>${invoices[i].order} </p>
+                Amount:   <br />     
+                <p>${invoices[i].amount} </p>
+                Cost:       <br />    
+                <p>$${invoices[i].cost} </p>
+                Paid:       <br />   
+                <p> $${invoices[i].paid} </p>
+                Owed:        <br />   
+                <p>$${invoices[i].cost - invoices[i].paid} </p>
+            </div>
+            `
+        }
+
+
+    </script>
+</body>
+</html>
